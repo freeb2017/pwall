@@ -158,7 +158,28 @@ class PublicProfileWidget extends SingleStepWidget{
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="skills">
-                
+                <div class="row text-center">';
+
+        foreach ($this->skillList as $key => $value) {
+              if($value == -1) {
+                $html .= "<h2 class='text-muted'>No qualities to praise!</h2>";
+              }
+              else {
+                $html .= '
+                  <div class="col-xs-4">
+                    <!-- small box -->
+                    <div class="small-box bg-green quality" data-quality-id="'.$value.'">
+                      <div class="inner text-center">
+                        <h3>0</h3>
+                        <p>'.$key.'</p>
+                      </div>
+                    </div>            
+                  </div>';
+              }
+        }
+
+        $html .= '
+                </div>
               </div>
               <!-- /.tab-pane -->
             </div>

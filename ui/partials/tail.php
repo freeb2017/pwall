@@ -9,6 +9,8 @@
 		<script src="/plugins/select2/select2.full.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 		<script src="/dist/js/bootstrap.custom.min.js"></script>
+		<script src="/js/star-rating.js" type="text/javascript"></script>
+
 		<script src="/js/common.js"></script>
         <!-- endbuild -->
 

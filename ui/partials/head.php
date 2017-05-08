@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="/plugins/datepicker/datepicker3.css">
 
 <link rel="stylesheet" href="/plugins/select2/select2.min.css">
+<link href="/style/star-rating.css" media="all" rel="stylesheet" type="text/css"/>
 
 <link rel="stylesheet" href="/dist/css/bootstrap.custom.min.css">
 <link rel="stylesheet" href="/dist/css/skin-blue.min.css">

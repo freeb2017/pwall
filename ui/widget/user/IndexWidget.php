@@ -23,6 +23,7 @@ class IndexWidget extends SingleStepWidget{
   public function render(){
     global $currentuser;
     $html = Util::beautify($currentuser->profile->getUsername());
+    $html .= '<input required class="rb-rating" type="text" value="" title="">';
     echo 'Welcome to Dashboard '.$html;
   }
 }
