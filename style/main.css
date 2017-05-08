@@ -1,0 +1,15 @@
+.error{
+	color: red;
+}
+.register-box{
+	margin: 4% auto!important;
+}
+.flash-message{
+	z-index: 10000;
+	top: 5px;
+    right: 5px;
+    position: absolute;
+    max-width: 40%;
+    width: auto;
+    min-width: 20%;
+}
