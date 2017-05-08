@@ -2,7 +2,7 @@
 	<footer class="main-footer">
 		<!-- To the right -->
 		<div class="pull-right hidden-xs">
-		  Showcase of your Qaulities.
+		  Showcase of your Qualities.
 		</div>
 		<!-- Default to the left -->
 		<strong>Copyright &copy; 2017 <a href="#">PraiseWALL</a>.</strong> All rights reserved.

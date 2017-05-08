@@ -34,7 +34,7 @@ class WebRouter extends BaseRouter{
 			include_once $page_path;
 		}catch( Exception $e ){
 
-			include_once "404Page.html";
+			include_once "404.html";
 			$this->logger->debug( "PAGE NOT FOUND ".$e->getMessage() );
 			die();
 		}

@@ -1,23 +1,9 @@
-<?php
-  global $module, $action;
-
-  $pageTitle = "HOME";
-  if($module == 'user' && $action == 'index') {
-    $pageTitle = "Dashboard";
-  }else if($module == 'user' && $action == 'friends') {
-    $pageTitle = "Friends";
-  }else if($module == 'user' && $action == 'profile') {
-    $pageTitle = "User Profile";
-  }else if($module == 'user' && $action == 'search') {
-    $pageTitle = "Make Friends";
-  }
-?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>PraiseWALL | <?=ucfirst($pageTitle);?></title>
+<title>PraiseWALL | <?=ucfirst(Util::getPageTitle($pageTitle));?></title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 

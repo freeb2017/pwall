@@ -47,9 +47,39 @@ class Util {
         return $escaped_string;
     }
 
-    public static function redirect( $module, $action ){
+    public static function redirect( $module, $action, $flash ){
 		global $prefix;
-		header("Location: $prefix/$module/$action" );
+		header("Location: $prefix/$module/$action?flash=".$flash );
+	}
+
+	public static function getDefaultValue($value, $default = 'Not Given'){
+		return $value ? $value : $default;
+	}
+
+	public static function getPageTitle(){
+
+	  global $module, $action;
+	  $pageTitle = "HOME";
+	  if($module == 'user' && $action == 'index') {
+	    $pageTitle = "Dashboard";
+	  }else if($module == 'user' && $action == 'friends') {
+	    $pageTitle = "Friends";
+	  }else if($module == 'user' && $action == 'profile') {
+	    $pageTitle = "User Profile";
+	  }else if($module == 'user' && $action == 'publicProfile') {
+	    $pageTitle = "Praise User Qualities";
+	  }
+	  return $pageTitle;
+	}
+
+	public static function getPageSubTitle() {
+
+	  global $module, $action;
+	  $pageSubtitle = "";
+	  if($module == 'user' && $action == 'index') {
+	    $pageSubtitle = "Place to see your insights";
+	  }
+	  return $pageSubtitle;
 	}
 }
 ?>
