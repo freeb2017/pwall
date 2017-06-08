@@ -68,12 +68,20 @@ class ProfileWidget extends SingleStepWidget{
   public function execute(){
     global $logger;
     $logger->debug("POST:".print_r($_POST,true));
+
     $this->response = 
       $this->UserController->updateUser($this->user_id, $_POST);
 
+    try{
+      if($_FILES["picture"]["name"])
+        $this->UserController->changePicture($_FILES, $this->user_id);
+    } catch ( Exception $e ){
+      $this->response = $e->getMessage();
+    }
+
     if($this->response != 'SUCCESS'){
       $this->error = "$('.form-error').removeClass('hide');";
-    } 
+    }
   }
   
   public function render(){
@@ -98,52 +106,11 @@ class ProfileWidget extends SingleStepWidget{
                   <b>Following</b> <a class="pull-right">543</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Friends</b> <a class="pull-right">0</a>
+                  <b>Friends</b> <a class="pull-right">'.$this->UserController->getActiveFriendsCount($this->user_id).'</a>
                 </li>
               </ul>
 
-              <a href="#" class="btn btn-primary btn-block"><b>Friends</b></a>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-          <!-- About Me Box -->
-          <div class="box box-primary hide">
-            <div class="box-header with-border">
-              <h3 class="box-title">About Me</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
-
-              <p class="text-muted">
-                B.S. in Computer Science from the University of Tennessee at Knoxville
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-
-              <p class="text-muted">Malibu, California</p>
-
-              <hr>
-
-              <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-
-              <p>
-                <span class="label label-danger">UI Design</span>
-                <span class="label label-success">Coding</span>
-                <span class="label label-info">Javascript</span>
-                <span class="label label-warning">PHP</span>
-                <span class="label label-primary">Node.js</span>
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+              <a href="/user/friends" class="btn btn-primary btn-block"><b>Friends</b></a>
             </div>
             <!-- /.box-body -->
           </div>
@@ -156,8 +123,9 @@ class ProfileWidget extends SingleStepWidget{
               <li class="active"><a href="#settings" data-toggle="tab">Personal Details</a></li>
             </ul>
             <div class="tab-content">
+              <p class="form-error text-red text-center hide">'.$this->response.'</p>
               <div class="tab-pane active" id="settings">
-                <form id="profileForm" action="/user/profile" method="post" class="form-horizontal">
+                <form id="profileForm" action="/user/profile" method="post" class="form-horizontal" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
 
@@ -181,7 +149,7 @@ class ProfileWidget extends SingleStepWidget{
                     <label for="inputName" class="col-sm-2 control-label">Date of Birth</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Date of Birth" name="dob" id="dob" value="'.DateUtil::getDateAsDisplayString($this->userProfile['dob']).'">
+                      <input type="text" class="form-control" placeholder="Date of Birth" name="dob" id="dob" value="'.$this->userProfile['dob'].'">
                     </div>
                   </div>
                   <div class="form-group">
@@ -198,6 +166,13 @@ class ProfileWidget extends SingleStepWidget{
 
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="phone" placeholder="Phone Number" name="phone" value="'.$this->userProfile['phone'].'">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Change Picture</label>
+
+                    <div class="col-sm-10">
+                      <input type="file" class="form-control" id="picture" placeholder="Change Picture" name="picture">
                     </div>
                   </div>
                   <div class="form-group">
@@ -242,7 +217,6 @@ class ProfileWidget extends SingleStepWidget{
                       <button type="submit" class="btn btn-danger">Submit</button>
                     </div>
                   </div>
-                  <p class="form-error text-red text-center hide">'.$this->response.'</p>
                 </form>
               </div>
               <!-- /.tab-pane -->
@@ -260,11 +234,12 @@ class ProfileWidget extends SingleStepWidget{
     $html .= $this->error;
     $html .= '$("#dob").datepicker({
           autoclose: true,
-          format: "dd/mm/yyyy",
-          startDate: "01/01/1900",
-          endDate: "31/12/2000"
+          format: "yyyy-mm-dd",
+          startDate: "1900-01-01",
+          endDate: "2010-12-31"
           });
           $("#gender option[value='.$this->userProfile['gender'].']").attr("selected",true);
+          $(".img-circle").attr("src","'.$this->userProfile['picture'].'");$(".user-image").attr("src","'.$this->userProfile['picture'].'");
           ';
     $html .= '});</script>';
 

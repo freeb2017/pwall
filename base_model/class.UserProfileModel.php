@@ -29,7 +29,8 @@ class UserProfileModel
 		global $logger;
 		
 		$this->logger = $logger;
-		$this->database = new Dbase( 'pwall' );
+		// $this->database = new Dbase( 'pwall' );
+		$this->database = Dbase::getInstance();
 	}
 
 	function getId()
@@ -221,10 +222,9 @@ class UserProfileModel
 				user_id,
 				username,
 				gender,
+				picture,
 				dob,
 				country_id,
-				picture,
-				link,
 				phone,
 				likes,
 				dislikes,
@@ -238,10 +238,9 @@ class UserProfileModel
 				'$this->user_id',
 				'$this->username',
 				'$this->gender',
+				'$this->picture',
 				'$this->dob',
 				'$this->country_id',
-				'$this->picture',
-				'$this->link',
 				'$this->phone',
 				'$this->likes',
 				'$this->dislikes',
@@ -266,11 +265,10 @@ class UserProfileModel
 				id,
 				user_id,
 				username,
+				picture,
 				gender,
 				dob,
 				country_id,
-				picture,
-				link,
 				phone,
 				likes,
 				dislikes,
@@ -286,11 +284,10 @@ class UserProfileModel
 				'$this->id',
 				'$this->user_id',
 				'$this->username',
+				'$this->picture',
 				'$this->gender',
 				'$this->dob',
 				'$this->country_id',
-				'$this->picture',
-				'$this->link',
 				'$this->phone',
 				'$this->likes',
 				'$this->dislikes',
@@ -319,8 +316,6 @@ class UserProfileModel
 				gender = '$this->gender',
 				dob = '$this->dob',
 				country_id = '$this->country_id',
-				picture = '$this->picture',
-				link = '$this->link',
 				phone = '$this->phone',
 				likes = '$this->likes',
 				dislikes = '$this->dislikes',

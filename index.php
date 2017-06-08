@@ -1,12 +1,6 @@
 <?php
 /**
- * Start for all praise wall related activities. This file does the following:
- * - Find the URL using urlParser
- * - Call the relevant action in the relevant module
- * - Display the result in the required format
- */
-
-ini_set("zend.enable_gc", 0);
+ * Start for all praise wall related activities. */
 
 ob_start();
 
@@ -15,9 +9,6 @@ $old_error_level = error_reporting(E_ALL ^ E_NOTICE );
 
 // Start of session
 session_start();
-
-# Find the prefix of the path
-$prefix = substr($_SERVER['PHP_SELF'], 0, stripos($_SERVER['PHP_SELF'], 'index.php', 1) - 1);
 
 // Handler to add few common helper files, autoloader, error codes and constants
 require_once('common.php');
@@ -28,7 +19,6 @@ $logger->enabled = true;
 
 // to show flash message for success and error msgs on topbar
 $flash_message = "";
-$request_type = 'WEB';
 
 $url = isset( $_GET['url'] ) ? $_GET['url'] : "";
 
@@ -42,15 +32,12 @@ $params = $urlParser->getParams();
 // To initiate auth handler on start of application
 $auth = Auth::getInstance();
 
-//This is a hack to overcome session locking issue in concurrent ajax calls.
-//check module is xaja | store health is the action do session write close
 if($module == 'ajax')
 	Auth::session_force_end();
 
 $from = $urlParser->getFrom();
 $flash_message = $urlParser->getFlashMessage();
 
-//TODO : we have to remove all the style from here
 if( ( $module == 'style' ) || ( $module == 'images' ) ||  ( $module == 'js' ) ){ echo "404 PAGE ERROR"; die(); };
 
 /**
@@ -58,8 +45,6 @@ if( ( $module == 'style' ) || ( $module == 'images' ) ||  ( $module == 'js' ) ){
  */
 if ( $auth->isLoggedIn() ) {
 	$currentuser = $user = $auth->user_data;
-} else {
-	// header('Location: /auth/login');
 }
 
 if($auth->canProceed()){
@@ -68,8 +53,15 @@ if($auth->canProceed()){
 
 // Setting up headers for output stream to UI
 $returnType = $urlParser->getReturnType();
-if($returnType == 'json'){
+if($module == 'ajax'){
 	$logger->info("Displaying JSON: $w/$layout");
+
+	if($data["status"]){
+		header('HTTP/1.1 200 Success');
+	}else{
+		header('HTTP/1.1 500 Internal Server Error');
+	}
+
 	Header("Content-type: application/x-javascript");
 	foreach($data as $key=>$value)
 		$data[$key] = is_null($data[$key])?array():$data[$key];

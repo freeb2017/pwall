@@ -61,6 +61,8 @@ class LoginWidget extends SingleStepWidget{
 			        </div>
 			      </div>
 			    </form>
+			    <a href="/auth/forget" class="text-center">I have forgot my password</a>
+			    <br>
 			    <a href="/auth/register" class="text-center">Register a new membership</a>
 			    <p class="form-error text-red text-center hide">Invalid Username or Password</p>
 			  </div>

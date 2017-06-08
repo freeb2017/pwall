@@ -1,16 +1,20 @@
-	<!-- Main Footer -->
 	<footer class="main-footer">
-		<!-- To the right -->
 		<div class="pull-right hidden-xs">
 		  Showcase of your Qualities.
 		</div>
-		<!-- Default to the left -->
 		<strong>Copyright &copy; 2017 <a href="#">PraiseWALL</a>.</strong> All rights reserved.
 	</footer>
-
-	<!-- Add the sidebar's background. This div must be placed
-	   immediately after the control sidebar -->
-	<div class="control-sidebar-bg"></div>
-
+	<aside class="control-sidebar control-sidebar-dark" style="position: fixed; height: auto;">
+	    <!-- Tab panes -->
+	    <div class="tab-content">
+	      <!-- Home tab content -->
+	      <div class="tab-pane active" id="control-sidebar-home-tab">
+	        <div class="control-sidebar-heading">Recent Activity</div>
+	        <ul class="control-sidebar-menu" data-lid="0">
+	        </ul>
+	      </div>
+	    </div>
+	  </aside>
+	<div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
 </div>
 <!-- ./wrapper -->

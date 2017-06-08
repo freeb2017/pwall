@@ -1,5 +1,4 @@
 <?php 
-include_once 'ui/widget/base/WidgetFactory.php';
 include_once 'ui/page/base/BasePage.php';
 
 /**
@@ -12,9 +11,10 @@ class LogoutPage extends BasePage{
 	}
 	
 	public function loadWidgets(){
-		
-		$logout = WidgetFactory::getWidget( 'auth::LogoutWidget' );
-		$this->callWidget( $logout );
+
+		include_once 'ui/widget/auth/LogoutWidget.php';
+		$logout = new LogoutWidget();
+		$this->callWidget($logout);
 	}
 }
 

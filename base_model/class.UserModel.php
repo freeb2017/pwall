@@ -24,7 +24,8 @@ class UserModel
 		global $logger;
 		
 		$this->logger = $logger;
-		$this->database = new Dbase('pwall');
+		// $this->database = new Dbase('pwall');
+		$this->database = Dbase::getInstance();
 	}
 
 	function getUserId()

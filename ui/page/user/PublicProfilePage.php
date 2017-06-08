@@ -1,5 +1,4 @@
 <?php 
-include_once 'ui/widget/base/WidgetFactory.php';
 include_once 'ui/page/base/BasePage.php';
 
 /**
@@ -16,8 +15,9 @@ class PublicProfilePage extends BasePage{
 	
 	public function loadWidgets(){
 		
-		$profile = WidgetFactory::getWidget( 'user::PublicProfileWidget' );
-		$this->callWidget( $profile );
+		include_once 'ui/widget/user/PublicProfileWidget.php';
+		$profile = new PublicProfileWidget();
+		$this->callWidget($profile);
 	}
 }
 

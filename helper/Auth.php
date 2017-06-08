@@ -57,7 +57,8 @@ class Auth {
 		
 		global $logger;
 		$this->logger = &$logger;
-		$this->db = new Dbase('pwall');
+		// $this->db = new Dbase('pwall');
+		$this->db = Dbase::getInstance();
 		$this->postLoginSetup();
 	}
 	
@@ -268,7 +269,8 @@ class Auth {
 	 */
 	public static function redirectToPWall($flash = 'Welcome'){
 
-		$db = new Dbase( 'pwall' );
+		// $db = new Dbase( 'pwall' );
+		$db = Dbase::getInstance();
 		$id = ( int ) $_SESSION['userid'];
 
 		include_once 'base_model/class.UserModel.php';

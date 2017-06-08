@@ -1,5 +1,4 @@
 <?php 
-include_once 'ui/widget/base/WidgetFactory.php';
 include_once 'ui/page/base/BasePage.php';
 
 /**
@@ -13,8 +12,9 @@ class IndexPage extends BasePage{
 	
 	public function loadWidgets(){
 		
-		$index = WidgetFactory::getWidget( 'user::IndexWidget' );
-		$this->callWidget( $index );
+		include_once 'ui/widget/user/IndexWidget.php';
+		$index = new IndexWidget();
+		$this->callWidget($index);
 	}
 }
 

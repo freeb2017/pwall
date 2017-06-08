@@ -1,13 +1,5 @@
 <?php 
 
-/**
- * Page is made of number of widgets.
- * 
- * Base class loads, process, renders widgets 
- * one by one. The rendering of widget can be 
- * overloaded by page class.
- *
- */
 abstract class BasePage{
 	
 	private $widget_collections = array();
@@ -62,7 +54,7 @@ abstract class BasePage{
 
 	public function render(){
 
-		global $module,$action,$page;
+		global $module,$action,$page, $currentuser;
 		
 		require("ui/partials/head.php");
 
@@ -70,22 +62,31 @@ abstract class BasePage{
 
 		if($action == 'login')
 			$class = 'login-page';
-		else if($action == 'register')
+		else if($action == 'register' || $action == 'forget')
 			$class = 'register-page';
 
 		echo "<body class='hold-transition skin-blue fixed $class'>";
 
 		if(strtolower($module) != 'auth') {
-			require("ui/partials/header.php");
-			require("ui/partials/sidenav.php");
-			require("ui/partials/section_start.php");
+			if(isset($currentuser)){
+				$role = $currentuser->getRole();
+
+				if($role == 'ADMIN'){
+					require("ui/partials/admin_header.php");
+					require("ui/partials/admin_sidenav.php");
+					require("ui/partials/admin_section_start.php");	
+				} else {
+					require("ui/partials/header.php");
+					require("ui/partials/sidenav.php");
+					require("ui/partials/section_start.php");	
+				}
+			}
 		}
 		
 		//get out the widgets
 		$widgets = $this->getWidgets();
 
 		foreach( $widgets as $widget ){
-
 			//Ignore the page footer widgets
 			if( !$widget->isDestroyed() ){
 				$widget->render();
@@ -99,7 +100,7 @@ abstract class BasePage{
 		}
 		
 		require("ui/partials/tail.php");
-
+		
 		if($this->scripts)
 			echo $this->scripts;
 

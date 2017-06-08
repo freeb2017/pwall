@@ -1,7 +1,7 @@
 <?php 
 
 /**
- * The Base file
+ * The Base Parent Class for Ajax Serivce
  * calls will be put in here. 
  * 
  * @author Nikul
@@ -10,17 +10,15 @@
 abstract class BaseAjaxService {
 	
 	protected $type;
-	protected $params;
 	protected $data;
-	public $logger;
+	protected $logger;
 	
-	public function __construct( $type, $params ){
+	public function __construct($type){
 		
 		global $data, $logger;
 		
 		$this->data = &$data;
 		$this->type = $type;
-		$this->params = $params;
 		$this->logger = &$logger;
 	}
 	

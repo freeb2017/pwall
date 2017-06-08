@@ -6,6 +6,7 @@ class BaseRouter{
 	protected $name_space;
 	protected $page;
 	protected $params;
+	protected $action_type;
 	
 	protected $currentuser;
 	
@@ -28,6 +29,7 @@ class BaseRouter{
 		$this->name_space = $urlParser->getNameSpace();
 		$this->page = $urlParser->getPage();
 		$this->params = $urlParser->getParams();
+		$thi->action_type = $urlParser->getAction();
 	}
 }
 ?>

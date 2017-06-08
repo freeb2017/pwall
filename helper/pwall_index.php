@@ -6,13 +6,19 @@
 		unset( $_SESSION['parent_page_refersh_flash'] );
 	}
 
+	$currentuser = $user;
+
 	if($_SERVER['REQUEST_URI'] == '/')
 		header('Location: /user/index');
 
-	$currentuser = $user;
-	$router_class = new WebRouter( $urlParser );
-	$router_class->doRedirect();	
-
 	$data = array();
+
+	if($module == "ajax")
+		$router_class = new AjaxRouter( $urlParser );
+	else
+		$router_class = new WebRouter( $urlParser );
+
+	$router_class->doRedirect();
+	
 	$data['flash_message']= $flash_message;
 ?>

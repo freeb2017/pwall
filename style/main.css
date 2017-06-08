@@ -13,7 +13,87 @@
     width: auto;
     min-width: 20%;
 }
-.skill-label{
-	margin: 1%;
+.skill-label, .skill-tbl-label{
+	margin: 1px;
 	display: inline-block;
+}
+.tbl-user-panel{
+    padding: 0!important;
+    color: #bfbfbf!important;
+    font-size: 17px;
+}
+.tbl-user-panel > .info{
+    color: #727272!important;
+}
+.tbl-user-panel>.info>a{
+    color: blue!important;
+}
+.f-table tbody tr > td{
+	vertical-align: middle;
+	text-align: center;
+	width: 400px;
+}
+.f-table thead tr > th{
+	vertical-align: middle;
+	text-align: center;
+}
+.friend-request, .friend-request-make, .friend-suggest{
+	cursor: pointer;
+	display: block;
+}
+.br-theme-bootstrap-stars .br-widget a{
+	font: normal normal normal 25px/1 'Glyphicons Halflings'!important;
+    margin-right: 5px!important;
+}
+.rate-me-widget .widget-user .widget-user-header{
+	padding: 30px!important;
+}
+.rate-me-widget .widget-user .box-footer{
+	padding-top: 0px!important;
+}
+.widget-user-header{
+    margin-bottom: 0px!important;
+}
+.rate-me-widget .description-block{
+	margin: 5px 0 0 0!important;
+}
+.suggest-me-widget .select2, .suggest-me-widget .select2-search__field, .suggest-me-widget .form-group{
+	width: 100%!important;
+}
+.mt10{
+	margin-top: 10px;
+}
+.w100{
+	width: 100%!important;
+}
+.menu .notification-time{
+	display: none;
+}
+
+.control-sidebar-menu li, .notifications-menu li{
+	position: relative;
+}
+
+.control-sidebar-menu .notification-time{
+	display: inline-block;
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+    font-size: 1rem;
+    font-style: italic;
+}
+.user-panel>.image>img {
+    height: 45px!important;
+}
+.notifications-menu .notification-time{
+	display: inline-block;
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+    font-size: 1rem;
+    font-style: italic;
+}
+.navbar-nav>.notifications-menu>.dropdown-menu>li .menu>li>a{
+	text-overflow: initial!important;
+	white-space: normal!important;
 }

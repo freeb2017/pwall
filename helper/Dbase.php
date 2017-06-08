@@ -13,14 +13,25 @@ class Dbase {
 
     private $conn;
 
+    private static $instance;
+
     /**
      * Retrieve the DB settings, connect
      * @param $dbname
      **/
-    function __construct($dbname) {
+    public function __construct($dbname) {
 
         $this->dbname = $dbname;
         $this->dbi = new DbConnection($dbname);
+    }
+
+    public static function getInstance(){
+        
+        if (!Dbase::$instance) {
+            Dbase::$instance = new Dbase('pwall');
+        }
+        
+        return Dbase::$instance;
     }
 
     /**
@@ -236,3 +247,4 @@ class Dbase {
         return !$this->query_scalar($sql);
     }
 }
+?>

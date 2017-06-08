@@ -1,5 +1,4 @@
 <?php 
-include_once 'ui/widget/base/WidgetFactory.php';
 include_once 'ui/page/base/BasePage.php';
 
 /**
@@ -18,8 +17,9 @@ class RegisterPage extends BasePage{
 	
 	public function loadWidgets(){
 		
-		$login = WidgetFactory::getWidget( 'auth::RegisterWidget' );
-		$this->callWidget( $login );
+		include_once 'ui/widget/auth/RegisterWidget.php';
+		$register = new RegisterWidget();
+		$this->callWidget($register);
 	}
 }
 

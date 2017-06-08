@@ -110,9 +110,9 @@ class RegisterWidget extends SingleStepWidget{
 		$html .= $this->error;
 		$html .= '$("#dob").datepicker({
 					autoclose: true,
-					format: "dd/mm/yyyy",
-					startDate: "01/01/1900",
-					endDate: "31/12/2000"
+					format: "yyyy-mm-dd",
+					startDate: "1900-01-01",
+          			endDate: "2010-12-31"
 					});';
 		$html .= '});</script>';
 
