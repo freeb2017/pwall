@@ -82,7 +82,7 @@ class NotificationsModelExtension{
 					n.`activity`
 				FROM `user_notifications` un 
 					JOIN `notifications` n ON n.`id` = un.`notification_id`
-				WHERE un.`user_id` = '$user_id' $filter AND n.`activity` != 'FRIEND_RATED_FRIEND' ORDER BY un.`id` DESC";
+                                WHERE un.`user_id` = '$user_id' $filter AND n.`activity` NOT IN ('FRIEND_RATED_FRIEND','FRIEND_CHANGED_PIC') ORDER BY un.`id` DESC";
 
 		return $this->database->query($sql);
 	}

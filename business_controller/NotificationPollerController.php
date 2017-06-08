@@ -39,6 +39,11 @@ class NotificationPollerController{
 			$result = array_merge($alerts1, $alerts2);
 		else
 			$result = $alerts1;
+
+		$alerts3 = $this->pullFriendChangedPicAlert($user_id, $last_id);
+		if($alerts3)
+			$result = array_merge($result, $alerts3);
+		
 		$this->logger->debug("End of Pull notification Alerts:".print_r($result, true));
 		return $result;
 	}
