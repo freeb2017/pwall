@@ -1,0 +1,19 @@
+-> Bootstrap css framework
+-> JQuery
+-> Font Awesome icons - http://fontawesome.io
+-> Ionic icons - https://github.com/driftyco/ionicons
+
+JQuery open source Plugins:
+-> datepicker - https://github.com/eternicode/bootstrap-datepicker
+-> pace - http://github.hubspot.com/pace/
+-> Datatable - http://www.datatables.net
+-> slimScroll - http://rocha.la/jQuery-slimScroll
+-> jQuery Bar Rating Plugin v1.2.2 - http://github.com/antennaio/jquery-bar-rating
+-> bootstrap-star-rating v4.0.2 - http://plugins.krajee.com/star-rating
+-> JQuery UI - http://jqueryui.com
+-> modernizr - http://www.modernizr.com
+-> vector map - http://jvectormap.com/
+-> select2 - https://select2.github.io
+-> Jquery Form Validate - https://jqueryvalidation.org/
+-> fastclick - https://github.com/ftlabs/fastclick
+   Polyfill to remove click delays on browsers with touch UIs
