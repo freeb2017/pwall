@@ -44,8 +44,7 @@ class SuggestedWidget extends SingleStepWidget{
             <div class="box-body">
               <table id="suggested_tbl" class="f-table table table-bordered table-striped compact">';
 
-    if($this->userList){
-          $html .= '<thead>
+    $html .= '<thead>
                 <tr>
                   <th>Quality</th>
                   <th>Suggested By</th>
@@ -54,6 +53,8 @@ class SuggestedWidget extends SingleStepWidget{
                 </thead>
                 <tbody>';
 
+    if($this->userList){
+          
       foreach ($this->userList as $key => $value) {
         $html .= '<tr>
                   <td class="text-center">
@@ -78,21 +79,27 @@ class SuggestedWidget extends SingleStepWidget{
         $html .= '</td></tr>';
       }
 
-      $html .= "</tbody>";
-    } 
-    else {
+    } else {
       $html .= '<tr>
-                  <td class="text-center" colspan="3">
-                    N/A
+                  <td class="text-center">
+                    <div class="user-panel">
+                        N/A
+                    </div>
                   </td>
-                  <td class="text-center" colspan="3">
-                    N/A
+                  <td class="text-center">
+                    <div class="user-panel">
+                        N/A
+                    </div>
                   </td>
-                  <td class="text-center" colspan="3">
-                    N/A
+                  <td class="text-center">
+                    <div class="user-panel">
+                        N/A
+                    </div>
                   </td>';
         $html .= '</tr>';
     }
+
+    $html .= "</tbody>";
                 
     $html .= '  
               </table>
